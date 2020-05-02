@@ -28,7 +28,10 @@ android {
 dependencies {
     implementation deps("org.jetbrains.kotlin:kotlin-stdlib-jdk7")
     implementation deps('androidx.appcompat:appcompat')
+    implementation deps('androidx.fragment:fragment')
+    implementation deps('androidx.fragment:fragment-ktx')
     implementation deps('androidx.core:core-ktx')
+    implementation deps('com.google.android.material:material')
     implementation deps('androidx.constraintlayout:constraintlayout')
 
     testImplementation deps('junit:junit')
