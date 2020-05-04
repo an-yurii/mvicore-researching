@@ -2,6 +2,7 @@ include ':app',
         ':core-utils',
         ':characters-api',
         ':characters',
+        ':locations-api',
         ':locations',
         ':startscreen-api',
         ':startscreen'
