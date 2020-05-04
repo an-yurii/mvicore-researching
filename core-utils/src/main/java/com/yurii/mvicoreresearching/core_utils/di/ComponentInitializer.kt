@@ -1,4 +1,4 @@
-package com.yurii.mvicoreresearching.startscreen.di
+package com.yurii.mvicoreresearching.core_utils.di
 
 abstract class ComponentInitializer<Component, Dependencies> {
     @Volatile private var component: Component? = null

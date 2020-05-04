@@ -28,6 +28,7 @@ android {
 }
 
 dependencies {
+    implementation project(':core-utils')
     implementation project(':startscreen-api')
     implementation project(':characters-api')
     implementation project(':locations-api')

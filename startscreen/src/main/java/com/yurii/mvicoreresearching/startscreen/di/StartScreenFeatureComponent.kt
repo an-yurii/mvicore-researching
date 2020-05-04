@@ -1,6 +1,8 @@
 package com.yurii.mvicoreresearching.startscreen.di
 
 import com.yurii.mvicoreresearching.characters_api.CharactersFeatureApi
+import com.yurii.mvicoreresearching.core_utils.di.ComponentInitializer
+import com.yurii.mvicoreresearching.core_utils.di.PerFeature
 import com.yurii.mvicoreresearching.episodes_api.EpisodesFeatureApi
 import com.yurii.mvicoreresearching.locations_api.LocationsFeatureApi
 import com.yurii.mvicoreresearching.startscreen.ui.StartFragment
@@ -11,6 +13,7 @@ import dagger.Component
     modules = [StartScreenFeatureModule::class],
     dependencies = [StartScreenFeatureDependencies::class]
 )
+@PerFeature
 abstract class StartScreenFeatureComponent : StartScreenFeatureApi {
 
     object Initializer : ComponentInitializer<StartScreenFeatureComponent, StartScreenFeatureDependencies>() {
@@ -26,4 +29,5 @@ abstract class StartScreenFeatureComponent : StartScreenFeatureApi {
 }
 
 @Component(dependencies = [CharactersFeatureApi::class, LocationsFeatureApi::class, EpisodesFeatureApi::class])
+@PerFeature
 interface StartScreenFeatureDependenciesComponent : StartScreenFeatureDependencies
