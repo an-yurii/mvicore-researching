@@ -27,6 +27,8 @@ android {
 }
 
 dependencies {
+    implementation project(':characters-api')
+
     implementation deps("org.jetbrains.kotlin:kotlin-stdlib-jdk7")
     implementation deps('androidx.appcompat:appcompat')
     implementation deps('androidx.core:core-ktx')
