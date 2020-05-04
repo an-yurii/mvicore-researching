@@ -37,6 +37,7 @@ dependencies {
     implementation deps("org.jetbrains.kotlin:kotlin-stdlib-jdk7")
     implementation deps('androidx.appcompat:appcompat')
     implementation deps('androidx.core:core-ktx')
+    implementation deps('com.google.android.material:material')
 
     implementation deps('com.google.dagger:dagger')
     kapt deps('com.google.dagger:dagger-compiler')

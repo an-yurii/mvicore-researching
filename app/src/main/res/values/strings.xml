@@ -1,6 +1,3 @@
 <resources>
     <string name="app_name">MVICore researching</string>
-    <string name="menu_item_characters">Персонажи</string>
-    <string name="menu_item_locations">Локации</string>
-    <string name="menu_item_episodes">Эпизоды</string>
 </resources>
