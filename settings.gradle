@@ -1,3 +1,4 @@
 include ':app',
+        ':characters',
         ':startscreen'
 rootProject.name='MVICore researching'
