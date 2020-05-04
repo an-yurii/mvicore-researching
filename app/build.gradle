@@ -26,6 +26,8 @@ android {
 }
 
 dependencies {
+    implementation project(':startscreen')
+
     implementation deps("org.jetbrains.kotlin:kotlin-stdlib-jdk7")
     implementation deps('androidx.appcompat:appcompat')
     implementation deps('androidx.fragment:fragment')

@@ -1,11 +1,11 @@
-package com.yurii.mvicoreresearching.characters
+package com.yurii.mvicoreresearching.characters.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.yurii.mvicoreresearching.R
+import com.yurii.mvicoreresearching.characters.R
 
 class CharactersFragment : Fragment() {
 
