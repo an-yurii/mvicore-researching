@@ -2,7 +2,7 @@ package com.yurii.mvicoreresearching
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.yurii.mvicoreresearching.startscreen.ui.StartFragment
+import com.yurii.mvicoreresearching.di.StartScreenProxyInjector
 
 class MainActivity : AppCompatActivity() {
 
@@ -10,8 +10,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         if (savedInstanceState == null) {
+            val startFragment = StartScreenProxyInjector.getFeature().startScreenStarter().getFragment()
             supportFragmentManager.beginTransaction()
-                .replace(android.R.id.content, StartFragment())
+                .replace(android.R.id.content, startFragment)
                 .commit()
         }
     }
