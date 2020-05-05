@@ -5,9 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.yurii.mvicoreresearching.characters_api.CharactersFeatureApi
-import com.yurii.mvicoreresearching.episodes_api.EpisodesFeatureApi
-import com.yurii.mvicoreresearching.locations_api.LocationsFeatureApi
 import com.yurii.mvicoreresearching.startscreen.R
 import com.yurii.mvicoreresearching.startscreen.di.StartScreenFeatureComponent
 import io.reactivex.ObservableSource
@@ -22,15 +19,12 @@ class StartFragment : Fragment(), Consumer<ViewModel>, ObservableSource<UiEvent>
     private val source = PublishSubject.create<UiEvent>()
 
     @Inject
-    lateinit var charactersFeatureApi: CharactersFeatureApi
-    @Inject
-    lateinit var locationsFeatureApi: LocationsFeatureApi
-    @Inject
-    lateinit var episodesFeatureApi: EpisodesFeatureApi
+    lateinit var bindings: StartFragmentBindings
 
     override fun onCreate(savedInstanceState: Bundle?) {
         StartScreenFeatureComponent.Initializer.get().inject(this)
         super.onCreate(savedInstanceState)
+        bindings.setup(this, this)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -40,19 +34,19 @@ class StartFragment : Fragment(), Consumer<ViewModel>, ObservableSource<UiEvent>
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         bottomNavigation.setOnNavigationItemSelectedListener { menuItem ->
-            R.id.characters_item
-            val fragment = when (menuItem.itemId) {
-                R.id.characters_item -> charactersFeatureApi.charactersStarter().getFragment()
-                R.id.locations_item -> locationsFeatureApi.locationsStarter().getFragment()
-                R.id.episodes_item -> episodesFeatureApi.episodesStarter().getFragment()
-                else -> null
+            when (menuItem.itemId) {
+                R.id.characters_item -> source.onNext(UiEvent.CharactersSelected)
+                R.id.locations_item -> source.onNext(UiEvent.LocationsSelected)
+                R.id.episodes_item -> source.onNext(UiEvent.EpisodesSelected)
             }
-            fragment != null
+            true
         }
     }
 
     override fun accept(viewModel: ViewModel) {
-        //replace fragment
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.fragmentContainer, viewModel.selectedFragment)
+            .commit()
     }
 
     override fun subscribe(observer: Observer<in UiEvent>) {

@@ -5,8 +5,9 @@ import com.badoo.mvicore.feature.ReducerFeature
 import com.yurii.mvicoreresearching.characters_api.CharactersFeatureApi
 import com.yurii.mvicoreresearching.startscreen.feature.StartScreenFeature.Impact
 import com.yurii.mvicoreresearching.startscreen.feature.StartScreenFeature.State
+import javax.inject.Inject
 
-class StartScreenFeature(
+class StartScreenFeature @Inject constructor(
     private val charactersFeatureApi: CharactersFeatureApi,
     reducer: StartScreenReducer
 ) : ReducerFeature<Impact, State, Nothing>(

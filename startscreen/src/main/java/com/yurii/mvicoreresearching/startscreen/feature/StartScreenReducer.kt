@@ -6,8 +6,9 @@ import com.yurii.mvicoreresearching.episodes_api.EpisodesFeatureApi
 import com.yurii.mvicoreresearching.locations_api.LocationsFeatureApi
 import com.yurii.mvicoreresearching.startscreen.feature.StartScreenFeature.Impact
 import com.yurii.mvicoreresearching.startscreen.feature.StartScreenFeature.State
+import javax.inject.Inject
 
-class StartScreenReducer(
+class StartScreenReducer @Inject constructor(
     private val charactersFeatureApi: CharactersFeatureApi,
     private val locationsFeatureApi: LocationsFeatureApi,
     private val episodesFeatureApi: EpisodesFeatureApi
