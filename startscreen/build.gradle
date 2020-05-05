@@ -42,5 +42,11 @@ dependencies {
     implementation deps('com.google.dagger:dagger')
     kapt deps('com.google.dagger:dagger-compiler')
 
+    implementation deps('com.github.badoo.mvicore:mvicore')
+    implementation deps('com.github.badoo.mvicore:mvicore-android')
+
+    implementation deps('io.reactivex.rxjava2:rxjava')
+    implementation deps('io.reactivex.rxjava2:rxandroid')
+
     testImplementation deps('junit:junit')
 }

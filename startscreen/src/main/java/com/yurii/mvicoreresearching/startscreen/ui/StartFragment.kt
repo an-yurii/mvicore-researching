@@ -10,10 +10,16 @@ import com.yurii.mvicoreresearching.episodes_api.EpisodesFeatureApi
 import com.yurii.mvicoreresearching.locations_api.LocationsFeatureApi
 import com.yurii.mvicoreresearching.startscreen.R
 import com.yurii.mvicoreresearching.startscreen.di.StartScreenFeatureComponent
+import io.reactivex.ObservableSource
+import io.reactivex.Observer
+import io.reactivex.functions.Consumer
+import io.reactivex.subjects.PublishSubject
 import kotlinx.android.synthetic.main.fragment_start.*
 import javax.inject.Inject
 
-class StartFragment : Fragment() {
+class StartFragment : Fragment(), Consumer<ViewModel>, ObservableSource<UiEvent> {
+
+    private val source = PublishSubject.create<UiEvent>()
 
     @Inject
     lateinit var charactersFeatureApi: CharactersFeatureApi
@@ -45,5 +51,12 @@ class StartFragment : Fragment() {
         }
     }
 
+    override fun accept(viewModel: ViewModel) {
+        //replace fragment
+    }
+
+    override fun subscribe(observer: Observer<in UiEvent>) {
+        source.subscribe(observer)
+    }
 
 }
