@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 apply from: '../dependencies.gradle'
 
 android {
@@ -27,11 +28,21 @@ android {
 }
 
 dependencies {
+    implementation project(':core-utils')
     implementation project(':characters-api')
 
     implementation deps("org.jetbrains.kotlin:kotlin-stdlib-jdk7")
     implementation deps('androidx.appcompat:appcompat')
     implementation deps('androidx.core:core-ktx')
+
+    implementation deps('com.google.dagger:dagger')
+    kapt deps('com.google.dagger:dagger-compiler')
+
+    implementation deps('com.github.badoo.mvicore:mvicore')
+    implementation deps('com.github.badoo.mvicore:mvicore-android')
+
+    implementation deps('io.reactivex.rxjava2:rxjava')
+    implementation deps('io.reactivex.rxjava2:rxandroid')
 
     testImplementation deps('junit:junit')
 }

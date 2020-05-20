@@ -16,7 +16,7 @@ class StartScreenReducer @Inject constructor(
 
     override fun invoke(state: State, effect: Impact): State {
         return when (effect) {
-            Impact.CharactersSelected -> State { charactersFeatureApi.charactersStarter().getFragment() }
+            Impact.CharactersSelected -> State { charactersFeatureApi.getFragment() }
             Impact.LocationsSelected -> State { locationsFeatureApi.locationsStarter().getFragment() }
             Impact.EpisodesSelected -> State { episodesFeatureApi.episodesStarter().getFragment() }
         }

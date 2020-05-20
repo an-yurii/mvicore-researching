@@ -11,7 +11,7 @@ class StartScreenFeature @Inject constructor(
     private val charactersFeatureApi: CharactersFeatureApi,
     reducer: StartScreenReducer
 ) : ReducerFeature<Impact, State, Nothing>(
-    initialState = State { charactersFeatureApi.charactersStarter().getFragment() },
+    initialState = State { charactersFeatureApi.getFragment() },
     reducer = reducer
 ) {
 
