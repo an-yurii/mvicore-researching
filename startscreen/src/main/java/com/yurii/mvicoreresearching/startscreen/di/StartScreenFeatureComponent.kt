@@ -10,7 +10,7 @@ import com.yurii.mvicoreresearching.startscreen_api.StartScreenFeatureApi
 import dagger.Component
 
 @Component(
-    modules = [StartScreenFeatureModule::class],
+    modules = [StartScreenFeatureModule::class, StartScreenFragmentModule::class],
     dependencies = [StartScreenFeatureDependencies::class]
 )
 @PerFeature

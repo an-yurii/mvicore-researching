@@ -10,7 +10,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         if (savedInstanceState == null) {
-            val startFragment = StartScreenProxyInjector.getFeature().startScreenStarter().getFragment()
+            val startFragment = StartScreenProxyInjector.getFeature().getFragment()
             supportFragmentManager.beginTransaction()
                 .replace(android.R.id.content, startFragment)
                 .commit()
