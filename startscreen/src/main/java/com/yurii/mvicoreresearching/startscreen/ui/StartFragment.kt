@@ -43,6 +43,13 @@ class StartFragment : Fragment(), Consumer<ViewModel>, ObservableSource<UiEvent>
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        if (!requireActivity().isChangingConfigurations) {
+            StartScreenFeatureComponent.Initializer.reset()
+        }
+    }
+
     override fun accept(viewModel: ViewModel) {
         requireActivity().supportFragmentManager.beginTransaction()
             .replace(R.id.fragmentContainer, viewModel.selectedFragment)
