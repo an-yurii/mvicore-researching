@@ -2,8 +2,9 @@ package com.yurii.mvicoreresearching.characters.feature
 
 import com.badoo.mvicore.feature.ActorReducerFeature
 import com.yurii.mvicoreresearching.characters.feature.CharactersFeature.*
+import javax.inject.Inject
 
-class CharactersFeature : ActorReducerFeature<Wish, Effect, State, Nothing>(
+class CharactersFeature @Inject constructor() : ActorReducerFeature<Wish, Effect, State, Nothing>(
     initialState = State(),
     actor = CharactersActor(),
     reducer = CharactersReducer()
