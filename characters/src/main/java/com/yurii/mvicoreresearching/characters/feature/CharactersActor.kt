@@ -12,7 +12,7 @@ class CharactersActor : Actor<State, Wish, Effect> {
     override fun invoke(state: State, action: Wish): Observable<out Effect> {
         return when (action) {
             Wish.LoadNewData -> Observable.just<Effect>(Effect.DataIsLoaded(emptyList()))
-                .delay(3, TimeUnit.SECONDS)
+                .delay(5, TimeUnit.SECONDS)
                 .startWith(Effect.LoadingIsStarted)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

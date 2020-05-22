@@ -5,6 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.OnLifecycleEvent
 import com.yurii.mvicoreresearching.characters.R
 import com.yurii.mvicoreresearching.characters.di.CharactersFeatureComponent
 import io.reactivex.ObservableSource
@@ -14,7 +17,7 @@ import io.reactivex.subjects.PublishSubject
 import kotlinx.android.synthetic.main.fragment_characters.*
 import javax.inject.Inject
 
-class CharactersFragment : Fragment(), Consumer<ViewModel>, ObservableSource<UiEvent> {
+class CharactersFragment : Fragment(), Consumer<ViewModel>, ObservableSource<UiEvent>, LifecycleObserver {
 
     private val source = PublishSubject.create<UiEvent>()
     @Inject
@@ -35,6 +38,20 @@ class CharactersFragment : Fragment(), Consumer<ViewModel>, ObservableSource<UiE
         bindings.setup(this, this)
 
         swiperefresh.setOnRefreshListener { source.onNext(UiEvent.Refresh) }
+
+        lifecycle.addObserver(this)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        lifecycle.removeObserver(this)
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
+    protected fun onFragmentDestroy() {
+        if (!requireActivity().isChangingConfigurations) {
+            CharactersFeatureComponent.Initializer.reset()
+        }
     }
 
     override fun accept(viewModel: ViewModel?) {

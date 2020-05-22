@@ -5,6 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.OnLifecycleEvent
 import com.yurii.mvicoreresearching.startscreen.R
 import com.yurii.mvicoreresearching.startscreen.di.StartScreenFeatureComponent
 import io.reactivex.ObservableSource
@@ -14,7 +17,7 @@ import io.reactivex.subjects.PublishSubject
 import kotlinx.android.synthetic.main.fragment_start.*
 import javax.inject.Inject
 
-class StartFragment : Fragment(), Consumer<ViewModel>, ObservableSource<UiEvent> {
+class StartFragment : Fragment(), Consumer<ViewModel>, ObservableSource<UiEvent>, LifecycleObserver {
 
     private val source = PublishSubject.create<UiEvent>()
 
@@ -25,6 +28,7 @@ class StartFragment : Fragment(), Consumer<ViewModel>, ObservableSource<UiEvent>
         StartScreenFeatureComponent.Initializer.get().inject(this)
         super.onCreate(savedInstanceState)
         bindings.setup(this, this)
+        lifecycle.addObserver(this)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -45,6 +49,11 @@ class StartFragment : Fragment(), Consumer<ViewModel>, ObservableSource<UiEvent>
 
     override fun onDestroy() {
         super.onDestroy()
+        lifecycle.removeObserver(this)
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
+    private fun onFragmentDestroyed() {
         if (!requireActivity().isChangingConfigurations) {
             StartScreenFeatureComponent.Initializer.reset()
         }
