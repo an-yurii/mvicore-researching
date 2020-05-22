@@ -23,7 +23,6 @@ class CharactersFragment : Fragment(), Consumer<ViewModel>, ObservableSource<UiE
     override fun onCreate(savedInstanceState: Bundle?) {
         CharactersFeatureComponent.Initializer.get().inject(this)
         super.onCreate(savedInstanceState)
-        bindings.setup(this, this)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -33,6 +32,8 @@ class CharactersFragment : Fragment(), Consumer<ViewModel>, ObservableSource<UiE
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        bindings.setup(this, this)
+
         swiperefresh.setOnRefreshListener { source.onNext(UiEvent.Refresh) }
     }
 
