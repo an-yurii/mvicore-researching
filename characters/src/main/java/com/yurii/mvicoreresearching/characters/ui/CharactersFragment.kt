@@ -48,7 +48,7 @@ class CharactersFragment : Fragment(), Consumer<ViewModel>, ObservableSource<UiE
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-    protected fun onFragmentDestroy() {
+    private fun onFragmentDestroy() {
         if (!requireActivity().isChangingConfigurations) {
             CharactersFeatureComponent.Initializer.reset()
         }
