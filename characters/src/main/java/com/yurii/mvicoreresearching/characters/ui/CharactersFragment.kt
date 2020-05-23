@@ -10,6 +10,7 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import com.yurii.mvicoreresearching.characters.R
 import com.yurii.mvicoreresearching.characters.di.CharactersFeatureComponent
+import com.yurii.mvicoreresearching.characters.feature.CharactersFeature
 import io.reactivex.ObservableSource
 import io.reactivex.Observer
 import io.reactivex.functions.Consumer
@@ -22,6 +23,8 @@ class CharactersFragment : Fragment(), Consumer<ViewModel>, ObservableSource<UiE
     private val source = PublishSubject.create<UiEvent>()
     @Inject
     lateinit var bindings: CharactersFragmentBindings
+    @Inject
+    lateinit var feature: CharactersFeature
 
     override fun onCreate(savedInstanceState: Bundle?) {
         CharactersFeatureComponent.Initializer.get().inject(this)
@@ -51,6 +54,8 @@ class CharactersFragment : Fragment(), Consumer<ViewModel>, ObservableSource<UiE
     private fun onFragmentDestroy() {
         if (!requireActivity().isChangingConfigurations) {
             CharactersFeatureComponent.Initializer.reset()
+            //TODO не самое лучшее место для освобождения фичи
+            feature.dispose()
         }
     }
 
