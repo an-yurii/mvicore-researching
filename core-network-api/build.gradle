@@ -28,4 +28,5 @@ android {
 
 dependencies {
     implementation deps("org.jetbrains.kotlin:kotlin-stdlib-jdk7")
+    implementation deps('com.squareup.retrofit2:retrofit')
 }
