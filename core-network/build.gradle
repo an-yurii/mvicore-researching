@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 apply from: '../dependencies.gradle'
 
 android {
@@ -28,7 +29,11 @@ android {
 
 dependencies {
     implementation project(':core-network-api')
+    implementation project(':core-utils')
 
     implementation deps("org.jetbrains.kotlin:kotlin-stdlib-jdk7")
     implementation deps('com.squareup.retrofit2:retrofit')
+
+    implementation deps('com.google.dagger:dagger')
+    kapt deps('com.google.dagger:dagger-compiler')
 }
