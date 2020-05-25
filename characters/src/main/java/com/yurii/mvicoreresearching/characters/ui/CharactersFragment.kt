@@ -11,6 +11,9 @@ import androidx.lifecycle.OnLifecycleEvent
 import com.yurii.mvicoreresearching.characters.R
 import com.yurii.mvicoreresearching.characters.di.CharactersFeatureComponent
 import com.yurii.mvicoreresearching.characters.feature.CharactersFeature
+import com.yurii.mvicoreresearching.characters.ui.binding.CharactersFragmentBindings
+import com.yurii.mvicoreresearching.characters.ui.binding.UiEvent
+import com.yurii.mvicoreresearching.characters.ui.binding.ViewModel
 import io.reactivex.ObservableSource
 import io.reactivex.Observer
 import io.reactivex.functions.Consumer

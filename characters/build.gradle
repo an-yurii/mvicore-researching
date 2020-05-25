@@ -37,7 +37,8 @@ dependencies {
     implementation deps('androidx.core:core-ktx')
     implementation deps('androidx.swiperefreshlayout:swiperefreshlayout')
     implementation deps('androidx.constraintlayout:constraintlayout')
-
+    implementation deps('androidx.recyclerview:recyclerview')
+    implementation deps('androidx.paging:paging-runtime-ktx')
 
     implementation deps('com.google.dagger:dagger')
     kapt deps('com.google.dagger:dagger-compiler')

@@ -1,4 +1,4 @@
-package com.yurii.mvicoreresearching.characters.ui
+package com.yurii.mvicoreresearching.characters.ui.binding
 
 data class ViewModel(
     val isRefreshing: Boolean = false,

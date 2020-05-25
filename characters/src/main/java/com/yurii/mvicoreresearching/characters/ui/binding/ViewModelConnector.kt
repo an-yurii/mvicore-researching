@@ -1,4 +1,4 @@
-package com.yurii.mvicoreresearching.characters.ui
+package com.yurii.mvicoreresearching.characters.ui.binding
 
 import com.badoo.mvicore.connector.Connector
 import com.yurii.mvicoreresearching.characters.feature.CharactersFeature

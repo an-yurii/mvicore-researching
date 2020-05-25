@@ -1,2 +1,3 @@
 <resources>
+    <string name="characters_fragment_blank_screen_message">Нет данных для отображения</string>
 </resources>
