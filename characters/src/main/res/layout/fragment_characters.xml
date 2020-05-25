@@ -16,6 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
+            android:visibility="gone"
             android:text="@string/characters_fragment_blank_screen_message" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -23,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            android:visibility="gone"
+            android:visibility="visible"
             tools:visibility="visible"
             tools:listitem="@layout/list_item"
             tools:itemCount="10"

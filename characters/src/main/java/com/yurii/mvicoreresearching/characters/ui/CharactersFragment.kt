@@ -1,6 +1,8 @@
 package com.yurii.mvicoreresearching.characters.ui
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
+import androidx.paging.PagedList
 import com.yurii.mvicoreresearching.characters.R
 import com.yurii.mvicoreresearching.characters.di.CharactersFeatureComponent
 import com.yurii.mvicoreresearching.characters.feature.CharactersFeature
@@ -19,15 +22,24 @@ import io.reactivex.Observer
 import io.reactivex.functions.Consumer
 import io.reactivex.subjects.PublishSubject
 import kotlinx.android.synthetic.main.fragment_characters.*
+import java.util.concurrent.Executor
+import java.util.concurrent.Executors
 import javax.inject.Inject
+
 
 class CharactersFragment : Fragment(), Consumer<ViewModel>, ObservableSource<UiEvent>, LifecycleObserver {
 
+    private val charactersAdapter = CharactersAdapter()
     private val source = PublishSubject.create<UiEvent>()
     @Inject
     lateinit var bindings: CharactersFragmentBindings
     @Inject
     lateinit var feature: CharactersFeature
+
+    private val pagedList = PagedList.Builder<Int, Character>(CharactersDataSource(), 10)
+        .setNotifyExecutor(MainThreadExecutor())
+        .setFetchExecutor(Executors.newSingleThreadExecutor())
+        .build()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         CharactersFeatureComponent.Initializer.get().inject(this)
@@ -43,6 +55,8 @@ class CharactersFragment : Fragment(), Consumer<ViewModel>, ObservableSource<UiE
         super.onViewCreated(view, savedInstanceState)
         bindings.setup(this, this)
 
+        charactersAdapter.submitList(pagedList)
+        itemsList.adapter = charactersAdapter
         swiperefresh.setOnRefreshListener { source.onNext(UiEvent.Refresh) }
 
         lifecycle.addObserver(this)
@@ -64,10 +78,19 @@ class CharactersFragment : Fragment(), Consumer<ViewModel>, ObservableSource<UiE
 
     override fun accept(viewModel: ViewModel?) {
         swiperefresh.isRefreshing = viewModel?.isRefreshing == true
+//        charactersAdapter.submitList(viewModel.items)
     }
 
     override fun subscribe(observer: Observer<in UiEvent>) {
         source.subscribe(observer)
     }
 
+}
+
+internal class MainThreadExecutor : Executor {
+    private val handler = Handler(Looper.getMainLooper())
+
+    override fun execute(r: Runnable) {
+        handler.post(r)
+    }
 }
