@@ -11,6 +11,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.paging.PagedList
+import androidx.recyclerview.widget.GridLayoutManager
 import com.yurii.mvicoreresearching.characters.R
 import com.yurii.mvicoreresearching.characters.di.CharactersFeatureComponent
 import com.yurii.mvicoreresearching.characters.feature.CharactersFeature
@@ -56,6 +57,7 @@ class CharactersFragment : Fragment(), Consumer<ViewModel>, ObservableSource<UiE
         bindings.setup(this, this)
 
         charactersAdapter.submitList(pagedList)
+        itemsList.layoutManager = GridLayoutManager(requireContext(), 2)
         itemsList.adapter = charactersAdapter
         swiperefresh.setOnRefreshListener { source.onNext(UiEvent.Refresh) }
 
