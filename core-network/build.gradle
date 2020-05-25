@@ -32,7 +32,10 @@ dependencies {
     implementation project(':core-utils')
 
     implementation deps("org.jetbrains.kotlin:kotlin-stdlib-jdk7")
+
     implementation deps('com.squareup.retrofit2:retrofit')
+    implementation deps('com.squareup.retrofit2:converter-gson')
+    implementation deps('com.squareup.retrofit2:adapter-rxjava2')
 
     implementation deps('com.google.dagger:dagger')
     kapt deps('com.google.dagger:dagger-compiler')

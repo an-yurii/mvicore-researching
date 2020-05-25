@@ -33,6 +33,8 @@ android {
 
 dependencies {
     implementation project(':core-utils')
+    implementation project(':core-network-api')
+    implementation project(':core-network')
     implementation project(':startscreen-api')
     implementation project(':startscreen')
     implementation project(':characters-api')

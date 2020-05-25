@@ -29,6 +29,7 @@ android {
 
 dependencies {
     implementation project(':core-utils')
+    implementation project(':core-network-api')
     implementation project(':characters-api')
 
     implementation deps("org.jetbrains.kotlin:kotlin-stdlib-jdk7")
@@ -46,6 +47,9 @@ dependencies {
 
     implementation deps('io.reactivex.rxjava2:rxjava')
     implementation deps('io.reactivex.rxjava2:rxandroid')
+
+    implementation deps('com.squareup.retrofit2:retrofit')
+    implementation deps('com.squareup.retrofit2:adapter-rxjava2')
 
     testImplementation deps('junit:junit')
 }

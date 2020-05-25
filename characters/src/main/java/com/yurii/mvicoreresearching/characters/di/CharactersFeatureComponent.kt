@@ -2,6 +2,7 @@ package com.yurii.mvicoreresearching.characters.di
 
 import com.yurii.mvicoreresearching.characters.ui.CharactersFragment
 import com.yurii.mvicoreresearching.characters_api.CharactersFeatureApi
+import com.yurii.mvicoreresearching.core_network_api.CoreNetworkApi
 import com.yurii.mvicoreresearching.core_utils.di.ComponentInitializer
 import com.yurii.mvicoreresearching.core_utils.di.PerFeature
 import dagger.Component
@@ -25,5 +26,5 @@ abstract class CharactersFeatureComponent : CharactersFeatureApi {
 
 }
 
-@Component
+@Component(dependencies = [CoreNetworkApi::class])
 interface CharactersFeatureDependenciesComponent : CharactersFeatureDependencies

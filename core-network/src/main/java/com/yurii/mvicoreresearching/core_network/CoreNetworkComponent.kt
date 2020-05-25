@@ -11,10 +11,7 @@ abstract class CoreNetworkComponent : CoreNetworkApi {
 
     object Initializer : CoreComponentInitializer<CoreNetworkComponent>() {
 
-        override fun buildComponent(): CoreNetworkComponent {
-            return DaggerCoreNetworkComponent.builder()
-                .build()
-        }
+        override fun buildComponent(): CoreNetworkComponent = DaggerCoreNetworkComponent.builder().build()
 
     }
 
