@@ -52,5 +52,7 @@ dependencies {
     implementation deps('com.squareup.retrofit2:retrofit')
     implementation deps('com.squareup.retrofit2:adapter-rxjava2')
 
+    implementation deps('io.coil-kt:coil')
+
     testImplementation deps('junit:junit')
 }

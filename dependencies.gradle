@@ -46,7 +46,9 @@ ext.libraries = [
         //Retrofit
         'com.squareup.retrofit2:retrofit'                : versions.retrofit,
         'com.squareup.retrofit2:converter-gson'          : versions.retrofit,
-        'com.squareup.retrofit2:adapter-rxjava2'          : versions.retrofit,
+        'com.squareup.retrofit2:adapter-rxjava2'         : versions.retrofit,
+        //Coil
+        'io.coil-kt:coil'                                : '0.11.0',
         //Testing
         'junit:junit'                                    : versions.junit
 ]
