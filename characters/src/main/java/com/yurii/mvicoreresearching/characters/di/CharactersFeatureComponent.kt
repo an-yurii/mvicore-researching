@@ -1,5 +1,6 @@
 package com.yurii.mvicoreresearching.characters.di
 
+import com.yurii.mvicoreresearching.application_api.ApplicationApi
 import com.yurii.mvicoreresearching.characters.ui.CharactersFragment
 import com.yurii.mvicoreresearching.characters_api.CharactersFeatureApi
 import com.yurii.mvicoreresearching.core_network_api.CoreNetworkApi
@@ -26,5 +27,5 @@ abstract class CharactersFeatureComponent : CharactersFeatureApi {
 
 }
 
-@Component(dependencies = [CoreNetworkApi::class])
+@Component(dependencies = [CoreNetworkApi::class, ApplicationApi::class])
 interface CharactersFeatureDependenciesComponent : CharactersFeatureDependencies

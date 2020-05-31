@@ -31,8 +31,9 @@ import javax.inject.Inject
 
 class CharactersFragment : Fragment(), Consumer<ViewModel>, ObservableSource<UiEvent>, LifecycleObserver {
 
-    private val charactersAdapter = CharactersAdapter()
     private val source = PublishSubject.create<UiEvent>()
+    @Inject
+    lateinit var charactersAdapter: CharactersAdapter
     @Inject
     lateinit var bindings: CharactersFragmentBindings
     @Inject

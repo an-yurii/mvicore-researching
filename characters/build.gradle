@@ -25,9 +25,19 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
 }
 
 dependencies {
+    implementation project(':application-api')
     implementation project(':core-utils')
     implementation project(':core-network-api')
     implementation project(':characters-api')
