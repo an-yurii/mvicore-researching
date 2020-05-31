@@ -9,7 +9,7 @@ import dagger.Component
 
 @Component(
     dependencies = [CharactersFeatureDependencies::class],
-    modules = [CharactersFeatureModule::class, CharactersFragmentModule::class]
+    modules = [CharactersFeatureModule::class, CharactersFragmentModule::class, CharactersDataModule::class]
 )
 @PerFeature
 abstract class CharactersFeatureComponent : CharactersFeatureApi {
