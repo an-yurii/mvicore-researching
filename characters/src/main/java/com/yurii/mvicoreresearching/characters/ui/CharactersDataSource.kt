@@ -22,7 +22,7 @@ class CharactersDataSource(
 
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, Character>) {
         Log.d("CharactersDataSource", "loadAfter: ${params.key} (${params.requestedLoadSize})")
-        obtainDataChunk(charactersApi.characters()) { items, nextPage ->
+        obtainDataChunk(charactersApi.characters(params.key)) { items, nextPage ->
             callback.onResult(items, nextPage)
         }
     }
