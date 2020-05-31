@@ -1,4 +1,5 @@
 include ':app',
+        ':application-api',
         ':core-network-api',
         ':core-network',
         ':core-utils',
