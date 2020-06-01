@@ -61,7 +61,9 @@ class CharactersFragment : Fragment(), Consumer<ViewModel>, ObservableSource<UiE
         })
 
         itemsList.layoutManager = GridLayoutManager(requireContext(), 2)
-        itemsList.adapter = charactersAdapter
+        itemsList.adapter = charactersAdapter.apply { listener = {
+            source.onNext(UiEvent.OnItemClick(it))
+        } }
         swiperefresh.setOnRefreshListener { source.onNext(UiEvent.Refresh) }
 
         lifecycle.addObserver(this)

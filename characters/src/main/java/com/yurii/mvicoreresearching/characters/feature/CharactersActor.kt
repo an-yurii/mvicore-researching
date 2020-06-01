@@ -16,6 +16,7 @@ class CharactersActor : Actor<State, Wish, Effect> {
                 .startWith(Effect.LoadingIsStarted)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+            is Wish.ShowDetailScreen -> Observable.empty()
         }
     }
 

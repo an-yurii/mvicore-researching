@@ -17,6 +17,7 @@ class CharactersFeature @Inject constructor() : ActorReducerFeature<Wish, Effect
 
     sealed class Wish {
         object LoadNewData : Wish()
+        data class ShowDetailScreen(val characterUrl: String) : Wish()
     }
 
     sealed class Effect {

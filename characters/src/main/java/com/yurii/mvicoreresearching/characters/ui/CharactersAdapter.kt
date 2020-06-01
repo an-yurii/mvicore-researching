@@ -9,7 +9,8 @@ import com.yurii.mvicoreresearching.characters.R
 
 class CharactersAdapter(
     private val imageLoader: ImageLoader,
-    private val loadRequestBuilder: LoadRequestBuilder
+    private val loadRequestBuilder: LoadRequestBuilder,
+    var listener: (Character) -> Unit = {}
 ) : PagedListAdapter<Character, CharactersViewHolder>(CharactersDiffUtilCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharactersViewHolder {
@@ -18,6 +19,10 @@ class CharactersAdapter(
     }
 
     override fun onBindViewHolder(holder: CharactersViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        val item = getItem(position)
+        holder.bind(item)
+        if (item != null) {
+            holder.itemView.setOnClickListener { listener(item) }
+        }
     }
 }
