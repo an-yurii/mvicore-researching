@@ -1,8 +1,7 @@
 package com.yurii.mvicoreresearching.characters.ui
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,10 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
-import androidx.paging.LivePagedListBuilder
+import androidx.lifecycle.ViewModelProvider
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.GridLayoutManager
-import com.yurii.mvicoreresearching.characters.CharactersDataSourceFactory
 import com.yurii.mvicoreresearching.characters.R
 import com.yurii.mvicoreresearching.characters.di.CharactersFeatureComponent
 import com.yurii.mvicoreresearching.characters.feature.CharactersFeature
@@ -25,7 +23,6 @@ import io.reactivex.Observer
 import io.reactivex.functions.Consumer
 import io.reactivex.subjects.PublishSubject
 import kotlinx.android.synthetic.main.fragment_characters.*
-import java.util.concurrent.Executor
 import javax.inject.Inject
 
 
@@ -39,8 +36,8 @@ class CharactersFragment : Fragment(), Consumer<ViewModel>, ObservableSource<UiE
     @Inject
     lateinit var feature: CharactersFeature
     @Inject
-    lateinit var dataSourceFactory: CharactersDataSourceFactory
-//    lateinit var viewModel: CharactersViewModel
+    lateinit var viewModelFactory: CharactersViewModelFactory
+    lateinit var viewModel: CharactersViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         CharactersFeatureComponent.Initializer.get().inject(this)
@@ -56,15 +53,13 @@ class CharactersFragment : Fragment(), Consumer<ViewModel>, ObservableSource<UiE
         super.onViewCreated(view, savedInstanceState)
         bindings.setup(this, this)
 
-//        viewModel = ViewModelProvider(requireActivity()).get(CharactersViewModel::class.java)
-//        Log.d("CharactersDataSource", "viewModel: $viewModel")
+        viewModel = ViewModelProvider(requireActivity(), viewModelFactory).get(CharactersViewModel::class.java)
+        Log.d("CharactersDataSource", "viewModel: $viewModel")
 
-        val liveData = LivePagedListBuilder(dataSourceFactory, 10).build()
-        liveData.observe(viewLifecycleOwner, androidx.lifecycle.Observer<PagedList<Character>> {
+        viewModel.pagedList.observe(viewLifecycleOwner, androidx.lifecycle.Observer<PagedList<Character>> {
             charactersAdapter.submitList(it)
         })
 
-//        charactersAdapter.submitList(viewModel.pagedList)
         itemsList.layoutManager = GridLayoutManager(requireContext(), 2)
         itemsList.adapter = charactersAdapter
         swiperefresh.setOnRefreshListener { source.onNext(UiEvent.Refresh) }
@@ -77,18 +72,18 @@ class CharactersFragment : Fragment(), Consumer<ViewModel>, ObservableSource<UiE
         lifecycle.removeObserver(this)
     }
 
-//    @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
-//    private fun saveScrollPosition() {
-//        viewModel.position = (itemsList.layoutManager as GridLayoutManager).findFirstCompletelyVisibleItemPosition()
-//    }
-//
-//    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
-//    private fun restoreScrollPosition() {
-//        val position = viewModel.position
-//        if (position != 0) {
-//            (itemsList.layoutManager as GridLayoutManager).scrollToPosition(position)
-//        }
-//    }
+    @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
+    private fun saveScrollPosition() {
+        viewModel.position = (itemsList.layoutManager as GridLayoutManager).findFirstCompletelyVisibleItemPosition()
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
+    private fun restoreScrollPosition() {
+        val position = viewModel.position
+        if (position != 0) {
+            (itemsList.layoutManager as GridLayoutManager).scrollToPosition(position)
+        }
+    }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     private fun resetComponent() {
@@ -108,23 +103,3 @@ class CharactersFragment : Fragment(), Consumer<ViewModel>, ObservableSource<UiE
     }
 
 }
-
-internal class MainThreadExecutor : Executor {
-    private val handler = Handler(Looper.getMainLooper())
-
-    override fun execute(r: Runnable) {
-        handler.post(r)
-    }
-}
-
-//class CharactersViewModel : androidx.lifecycle.ViewModel() {
-//
-//
-//    val pagedList = PagedList.Builder<Int, Character>(CharactersDataSource(), 10)
-//        .setNotifyExecutor(MainThreadExecutor())
-//        .setFetchExecutor(Executors.newSingleThreadExecutor())
-//        .build()
-//
-//    var position: Int = 0
-//
-//}
