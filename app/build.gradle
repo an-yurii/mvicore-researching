@@ -57,5 +57,7 @@ dependencies {
     implementation deps('com.google.dagger:dagger')
     kapt deps('com.google.dagger:dagger-compiler')
 
+    implementation deps('ru.terrakok.cicerone:cicerone')
+
     testImplementation deps('junit:junit')
 }

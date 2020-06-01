@@ -49,6 +49,8 @@ ext.libraries = [
         'com.squareup.retrofit2:adapter-rxjava2'         : versions.retrofit,
         //Coil
         'io.coil-kt:coil'                                : '0.11.0',
+        //Cicerone
+        'ru.terrakok.cicerone:cicerone'                  : '5.1.1',
         //Testing
         'junit:junit'                                    : versions.junit
 ]
