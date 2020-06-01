@@ -29,4 +29,6 @@ android {
 dependencies {
     implementation deps("org.jetbrains.kotlin:kotlin-stdlib-jdk7")
     implementation deps('androidx.fragment:fragment')
+
+    implementation deps('ru.terrakok.cicerone:cicerone')
 }
