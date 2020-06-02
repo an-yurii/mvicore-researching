@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
+import coil.ImageLoader
+import coil.request.LoadRequestBuilder
 import com.yurii.mvicoreresearching.character_details.R
 import com.yurii.mvicoreresearching.character_details.di.CharacterDetailsFeatureComponent
 import com.yurii.mvicoreresearching.character_details.domain.Character
@@ -40,6 +42,13 @@ class CharacterDetailsFragment : Fragment(), Consumer<ViewModel>, ObservableSour
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         bindings.setup(this, this)
+        swiperefresh.setOnRefreshListener { source.onNext(UiEvent.Refresh) }
+        lifecycle.addObserver(this)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        lifecycle.removeObserver(this)
     }
 
     override fun accept(model: ViewModel?) {
@@ -65,6 +74,13 @@ class CharacterDetailsFragment : Fragment(), Consumer<ViewModel>, ObservableSour
         type.text = character.type
         gender.text = character.gender
         location.text = character.location
+
+        ImageLoader(requireContext()).execute(
+            LoadRequestBuilder(requireContext())
+                .data(character.avatarUrl)
+                .target(avatar)
+                .build()
+        )
     }
 
     private fun showError(throwable: Throwable) {
