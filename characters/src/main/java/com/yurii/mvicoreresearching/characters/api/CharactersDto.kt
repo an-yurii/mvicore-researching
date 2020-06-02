@@ -10,9 +10,7 @@ data class CharactersDto(
 data class CharactersInfoDto(
     val next: String
 ) {
-
     fun nextPage(): Int? = Uri.parse(next).getQueryParameter("page")?.toInt()
-
 }
 
 data class CharacterDto(

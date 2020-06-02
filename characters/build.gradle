@@ -67,4 +67,9 @@ dependencies {
     implementation deps('ru.terrakok.cicerone:cicerone')
 
     testImplementation deps('junit:junit')
+    testImplementation deps('org.jetbrains.kotlin:kotlin-test-junit')
+    testImplementation deps('com.google.truth:truth')
+    testImplementation deps('org.mockito:mockito-core')
+    testImplementation deps('com.nhaarman.mockitokotlin2:mockito-kotlin')
+    testImplementation deps('com.nhaarman.mockitokotlin2:mockito-kotlin')
 }
