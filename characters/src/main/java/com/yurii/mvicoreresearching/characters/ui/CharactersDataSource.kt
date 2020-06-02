@@ -5,6 +5,8 @@ import androidx.paging.DataSource
 import androidx.paging.PageKeyedDataSource
 import com.yurii.mvicoreresearching.characters.api.CharactersApi
 import com.yurii.mvicoreresearching.characters.api.CharactersDto
+import com.yurii.mvicoreresearching.characters.domain.Character
+import com.yurii.mvicoreresearching.characters.domain.toDomain
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable

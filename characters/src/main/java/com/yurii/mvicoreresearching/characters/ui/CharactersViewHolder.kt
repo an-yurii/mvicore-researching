@@ -4,6 +4,7 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import coil.ImageLoader
 import coil.request.LoadRequestBuilder
+import com.yurii.mvicoreresearching.characters.domain.Character
 import kotlinx.android.synthetic.main.list_item.view.*
 
 class CharactersViewHolder(

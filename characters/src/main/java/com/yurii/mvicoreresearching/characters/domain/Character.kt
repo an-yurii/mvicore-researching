@@ -1,4 +1,4 @@
-package com.yurii.mvicoreresearching.characters.ui
+package com.yurii.mvicoreresearching.characters.domain
 
 import com.yurii.mvicoreresearching.characters.api.CharacterDto
 

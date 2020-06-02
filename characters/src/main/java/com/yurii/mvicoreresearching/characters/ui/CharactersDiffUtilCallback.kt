@@ -1,6 +1,7 @@
 package com.yurii.mvicoreresearching.characters.ui
 
 import androidx.recyclerview.widget.DiffUtil
+import com.yurii.mvicoreresearching.characters.domain.Character
 
 object CharactersDiffUtilCallback : DiffUtil.ItemCallback<Character>() {
 

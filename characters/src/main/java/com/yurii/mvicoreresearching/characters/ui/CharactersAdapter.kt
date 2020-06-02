@@ -6,6 +6,7 @@ import androidx.paging.PagedListAdapter
 import coil.ImageLoader
 import coil.request.LoadRequestBuilder
 import com.yurii.mvicoreresearching.characters.R
+import com.yurii.mvicoreresearching.characters.domain.Character
 
 class CharactersAdapter(
     private val imageLoader: ImageLoader,

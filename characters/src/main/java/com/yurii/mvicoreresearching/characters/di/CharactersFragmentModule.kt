@@ -4,9 +4,9 @@ import androidx.fragment.app.Fragment
 import coil.ImageLoader
 import coil.request.LoadRequestBuilder
 import com.yurii.mvicoreresearching.application_api.ApplicationApi
-import com.yurii.mvicoreresearching.characters.CharactersDataSourceFactory
 import com.yurii.mvicoreresearching.characters.feature.CharactersFeature
 import com.yurii.mvicoreresearching.characters.ui.CharactersAdapter
+import com.yurii.mvicoreresearching.characters.ui.CharactersDataSourceFactory
 import com.yurii.mvicoreresearching.characters.ui.CharactersFragment
 import com.yurii.mvicoreresearching.characters.ui.CharactersViewModelFactory
 import com.yurii.mvicoreresearching.characters.ui.binding.CharactersFragmentBindings

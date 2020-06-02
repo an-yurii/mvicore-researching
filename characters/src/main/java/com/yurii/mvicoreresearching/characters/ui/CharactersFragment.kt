@@ -14,6 +14,7 @@ import androidx.paging.PagedList
 import androidx.recyclerview.widget.GridLayoutManager
 import com.yurii.mvicoreresearching.characters.R
 import com.yurii.mvicoreresearching.characters.di.CharactersFeatureComponent
+import com.yurii.mvicoreresearching.characters.domain.Character
 import com.yurii.mvicoreresearching.characters.feature.CharactersFeature
 import com.yurii.mvicoreresearching.characters.ui.binding.CharactersFragmentBindings
 import com.yurii.mvicoreresearching.characters.ui.binding.UiEvent

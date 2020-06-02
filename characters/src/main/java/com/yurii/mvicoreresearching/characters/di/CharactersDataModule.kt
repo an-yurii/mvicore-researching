@@ -1,8 +1,8 @@
 package com.yurii.mvicoreresearching.characters.di
 
-import com.yurii.mvicoreresearching.characters.CharactersDataSourceFactory
-import com.yurii.mvicoreresearching.characters.DefaultCharactersDataSourceFactory
 import com.yurii.mvicoreresearching.characters.api.CharactersApi
+import com.yurii.mvicoreresearching.characters.ui.CharactersDataSourceFactory
+import com.yurii.mvicoreresearching.characters.ui.DefaultCharactersDataSourceFactory
 import com.yurii.mvicoreresearching.core_network_api.CoreNetworkApi
 import dagger.Module
 import dagger.Provides
@@ -17,7 +17,9 @@ class CharactersDataModule {
 
     @Provides
     fun provideCharactersDataSourceFactory(charactersApi: CharactersApi): CharactersDataSourceFactory {
-        return DefaultCharactersDataSourceFactory(charactersApi)
+        return DefaultCharactersDataSourceFactory(
+            charactersApi
+        )
     }
 
 }
