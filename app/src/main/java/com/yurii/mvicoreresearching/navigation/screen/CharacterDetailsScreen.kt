@@ -1,4 +1,4 @@
-package com.yurii.mvicoreresearching.navigation
+package com.yurii.mvicoreresearching.navigation.screen
 
 import androidx.fragment.app.Fragment
 import com.yurii.mvicoreresearching.di.CharacterDetailsProxyInjector
