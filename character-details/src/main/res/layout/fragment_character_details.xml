@@ -80,6 +80,12 @@
             app:layout_constraintStart_toStartOf="parent"
             tools:text="Earth" />
 
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/payload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="avatar,name,status,species,type,gender,location"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

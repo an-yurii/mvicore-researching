@@ -45,7 +45,10 @@ class CharacterDetailsFragment : Fragment(), Consumer<ViewModel>, ObservableSour
     override fun accept(model: ViewModel?) {
         refreshLoading(model?.isRefreshing ?: false)
         if (model?.character != null) {
-            refreshData(model.character)
+            showData(model.character)
+        }
+        if (model?.throwable != null) {
+            showError(model.throwable)
         }
     }
 
@@ -53,8 +56,21 @@ class CharacterDetailsFragment : Fragment(), Consumer<ViewModel>, ObservableSour
         swiperefresh.isRefreshing = loadingInProgress
     }
 
-    private fun refreshData(character: Character) {
+    private fun showData(character: Character) {
+        errorMessage.visibility = View.GONE
+        payload.visibility = View.VISIBLE
         name.text = character.name
+        status.text = character.status
+        species.text = character.species
+        type.text = character.type
+        gender.text = character.gender
+        location.text = character.location
+    }
+
+    private fun showError(throwable: Throwable) {
+        errorMessage.visibility = View.VISIBLE
+        payload.visibility = View.GONE
+        errorMessage.text = throwable.message
     }
 
     override fun subscribe(observer: Observer<in UiEvent>) {
