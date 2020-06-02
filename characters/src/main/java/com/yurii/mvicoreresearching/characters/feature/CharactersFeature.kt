@@ -1,31 +1,21 @@
 package com.yurii.mvicoreresearching.characters.feature
 
-import com.badoo.mvicore.feature.ActorReducerFeature
-import com.yurii.mvicoreresearching.characters.feature.CharactersFeature.*
+import com.badoo.mvicore.feature.ReducerFeature
+import com.yurii.mvicoreresearching.characters.feature.CharactersFeature.State
+import com.yurii.mvicoreresearching.characters.feature.CharactersFeature.Wish
 import javax.inject.Inject
 
 class CharactersFeature @Inject constructor(
-    charactersActor: CharactersActor
-) : ActorReducerFeature<Wish, Effect, State, Nothing>(
+    charactersReducer: CharactersReducer
+) : ReducerFeature<Wish, State, Nothing>(
     initialState = State(),
-    actor = charactersActor,
-    reducer = CharactersReducer()
+    reducer = charactersReducer
 ) {
 
-    data class State(
-        val isLoading: Boolean = false,
-        val items: List<String> = emptyList()
-    )
+    class State
 
     sealed class Wish {
-        object LoadNewData : Wish()
         data class ShowDetailScreen(val characterId: Int) : Wish()
-    }
-
-    sealed class Effect {
-        object LoadingIsStarted : Effect()
-        data class DataIsLoaded(val items: List<String>) : Effect()
-        data class FinishedWithError(val throwable: Throwable) : Effect()
     }
 
 }

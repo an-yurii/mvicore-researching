@@ -10,7 +10,6 @@ import com.yurii.mvicoreresearching.characters.ui.CharactersAdapter
 import com.yurii.mvicoreresearching.characters.ui.CharactersFragment
 import com.yurii.mvicoreresearching.characters.ui.CharactersViewModelFactory
 import com.yurii.mvicoreresearching.characters.ui.binding.CharactersFragmentBindings
-import com.yurii.mvicoreresearching.characters.ui.binding.ViewModelConnector
 import com.yurii.mvicoreresearching.core_utils.di.PerFeature
 import dagger.Module
 import dagger.Provides
@@ -24,8 +23,7 @@ class CharactersFragmentModule {
     @PerFeature
     @Provides
     fun provideFragmentBindings(charactersFeature: CharactersFeature): CharactersFragmentBindings {
-        return CharactersFragmentBindings(charactersFeature, ViewModelConnector()
-        )
+        return CharactersFragmentBindings(charactersFeature)
     }
 
     @Provides

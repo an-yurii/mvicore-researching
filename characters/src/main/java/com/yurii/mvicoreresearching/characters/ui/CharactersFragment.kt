@@ -17,16 +17,14 @@ import com.yurii.mvicoreresearching.characters.di.CharactersFeatureComponent
 import com.yurii.mvicoreresearching.characters.feature.CharactersFeature
 import com.yurii.mvicoreresearching.characters.ui.binding.CharactersFragmentBindings
 import com.yurii.mvicoreresearching.characters.ui.binding.UiEvent
-import com.yurii.mvicoreresearching.characters.ui.binding.ViewModel
 import io.reactivex.ObservableSource
 import io.reactivex.Observer
-import io.reactivex.functions.Consumer
 import io.reactivex.subjects.PublishSubject
 import kotlinx.android.synthetic.main.fragment_characters.*
 import javax.inject.Inject
 
 
-class CharactersFragment : Fragment(), Consumer<ViewModel>, ObservableSource<UiEvent>, LifecycleObserver {
+class CharactersFragment : Fragment(), ObservableSource<UiEvent>, LifecycleObserver {
 
     private val source = PublishSubject.create<UiEvent>()
     @Inject
@@ -64,7 +62,6 @@ class CharactersFragment : Fragment(), Consumer<ViewModel>, ObservableSource<UiE
         itemsList.adapter = charactersAdapter.apply { listener = {
             source.onNext(UiEvent.OnItemClick(it))
         } }
-        swiperefresh.setOnRefreshListener { source.onNext(UiEvent.Refresh) }
 
         lifecycle.addObserver(this)
     }
@@ -94,10 +91,6 @@ class CharactersFragment : Fragment(), Consumer<ViewModel>, ObservableSource<UiE
             feature.dispose()
         }
         bindings.dispose()
-    }
-
-    override fun accept(viewModel: ViewModel?) {
-        swiperefresh.isRefreshing = viewModel?.isRefreshing == true
     }
 
     override fun subscribe(observer: Observer<in UiEvent>) {
