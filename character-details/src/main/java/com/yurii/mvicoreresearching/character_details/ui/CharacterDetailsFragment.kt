@@ -24,10 +24,8 @@ import javax.inject.Inject
 class CharacterDetailsFragment : Fragment(), Consumer<ViewModel>, ObservableSource<UiEvent>, LifecycleObserver {
 
     private val source = PublishSubject.create<UiEvent>()
-
     @Inject
     lateinit var bindings: CharacterDetailsFragmentBindings
-
     @Inject
     lateinit var feature: CharacterFeature
 

@@ -9,7 +9,7 @@ class CharacterReducer : Reducer<State, Effect> {
     override fun invoke(state: State, effect: Effect): State {
         return when (effect) {
             Effect.LoadingIsStarted -> state.copy(isLoading = true)
-            is Effect.DataIsLoaded -> state.copy(isLoading = false, data = effect.data)
+            is Effect.DataIsLoaded -> state.copy(isLoading = false, data = effect.data, throwable = null)
             is Effect.LoadingError -> state.copy(isLoading = false, data = null, throwable = effect.throwable)
         }
     }
