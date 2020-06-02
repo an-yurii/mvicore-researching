@@ -28,11 +28,9 @@ android {
 }
 
 dependencies {
+    implementation project(':application-api')
     implementation project(':core-utils')
     implementation project(':startscreen-api')
-    implementation project(':characters-api')
-    implementation project(':locations-api')
-    implementation project(':episodes-api')
 
     implementation deps("org.jetbrains.kotlin:kotlin-stdlib-jdk7")
     implementation deps('androidx.appcompat:appcompat')
@@ -47,6 +45,8 @@ dependencies {
 
     implementation deps('io.reactivex.rxjava2:rxjava')
     implementation deps('io.reactivex.rxjava2:rxandroid')
+
+    implementation deps('ru.terrakok.cicerone:cicerone')
 
     testImplementation deps('junit:junit')
 }

@@ -1,22 +1,23 @@
 package com.yurii.mvicoreresearching.startscreen.feature
 
-import androidx.fragment.app.Fragment
 import com.badoo.mvicore.feature.ReducerFeature
-import com.yurii.mvicoreresearching.characters_api.CharactersFeatureApi
+import com.yurii.mvicoreresearching.application_api.NavigationApi
+import com.yurii.mvicoreresearching.application_api.ScreenKey
 import com.yurii.mvicoreresearching.startscreen.feature.StartScreenFeature.Impact
 import com.yurii.mvicoreresearching.startscreen.feature.StartScreenFeature.State
+import ru.terrakok.cicerone.Screen
 import javax.inject.Inject
 
 class StartScreenFeature @Inject constructor(
-    private val charactersFeatureApi: CharactersFeatureApi,
+    navigationApi: NavigationApi,
     reducer: StartScreenReducer
 ) : ReducerFeature<Impact, State, Nothing>(
-    initialState = State { charactersFeatureApi.getFragment() },
+    initialState = State(navigationApi.screenProvider().get(ScreenKey.Characters)),
     reducer = reducer
 ) {
 
     data class State(
-        val selectionProvider: () -> Fragment
+        val screen: Screen
     )
 
     sealed class Impact {

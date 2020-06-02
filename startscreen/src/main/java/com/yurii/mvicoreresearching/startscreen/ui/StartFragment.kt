@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
+import com.yurii.mvicoreresearching.application_api.NavigationApi
 import com.yurii.mvicoreresearching.startscreen.R
 import com.yurii.mvicoreresearching.startscreen.di.StartScreenFeatureComponent
 import io.reactivex.ObservableSource
@@ -15,6 +16,7 @@ import io.reactivex.Observer
 import io.reactivex.functions.Consumer
 import io.reactivex.subjects.PublishSubject
 import kotlinx.android.synthetic.main.fragment_start.*
+import ru.terrakok.cicerone.android.support.SupportAppNavigator
 import javax.inject.Inject
 
 class StartFragment : Fragment(), Consumer<ViewModel>, ObservableSource<UiEvent>, LifecycleObserver {
@@ -23,12 +25,19 @@ class StartFragment : Fragment(), Consumer<ViewModel>, ObservableSource<UiEvent>
 
     @Inject
     lateinit var bindings: StartFragmentBindings
+    @Inject
+    lateinit var navigationApi: NavigationApi
+    private val navigator = SupportAppNavigator(requireActivity(), R.id.fragmentContainer)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         StartScreenFeatureComponent.Initializer.get().inject(this)
         super.onCreate(savedInstanceState)
-        bindings.setup(this, this)
         lifecycle.addObserver(this)
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        bindings.setup(this, this)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -47,6 +56,16 @@ class StartFragment : Fragment(), Consumer<ViewModel>, ObservableSource<UiEvent>
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        navigationApi.navigatorHolder().setNavigator(navigator)
+    }
+
+    override fun onPause() {
+        navigationApi.navigatorHolder().removeNavigator()
+        super.onPause()
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         lifecycle.removeObserver(this)
@@ -60,9 +79,7 @@ class StartFragment : Fragment(), Consumer<ViewModel>, ObservableSource<UiEvent>
     }
 
     override fun accept(viewModel: ViewModel) {
-        requireActivity().supportFragmentManager.beginTransaction()
-            .replace(R.id.fragmentContainer, viewModel.selectedFragment)
-            .commit()
+        navigationApi.router().replaceScreen(viewModel.screen)
     }
 
     override fun subscribe(observer: Observer<in UiEvent>) {

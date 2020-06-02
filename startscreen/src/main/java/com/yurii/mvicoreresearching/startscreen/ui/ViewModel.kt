@@ -1,7 +1,7 @@
 package com.yurii.mvicoreresearching.startscreen.ui
 
-import androidx.fragment.app.Fragment
+import ru.terrakok.cicerone.Screen
 
 data class ViewModel(
-    val selectedFragment: Fragment
+    val screen: Screen
 )
