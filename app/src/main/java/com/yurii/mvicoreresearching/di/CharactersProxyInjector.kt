@@ -12,6 +12,7 @@ object CharactersProxyInjector {
             DaggerCharactersFeatureDependenciesComponent.builder()
                 .coreNetworkApi(CoreNetworkProxyInjector.networkApi())
                 .applicationApi(AppComponent.Initializer.get())
+                .navigationApi(AppComponent.Initializer.get())
                 .build()
         )
     }

@@ -64,5 +64,7 @@ dependencies {
 
     implementation deps('io.coil-kt:coil')
 
+    implementation deps('ru.terrakok.cicerone:cicerone')
+
     testImplementation deps('junit:junit')
 }

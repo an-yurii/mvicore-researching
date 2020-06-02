@@ -4,9 +4,11 @@ import com.badoo.mvicore.feature.ActorReducerFeature
 import com.yurii.mvicoreresearching.characters.feature.CharactersFeature.*
 import javax.inject.Inject
 
-class CharactersFeature @Inject constructor() : ActorReducerFeature<Wish, Effect, State, Nothing>(
+class CharactersFeature @Inject constructor(
+    charactersActor: CharactersActor
+) : ActorReducerFeature<Wish, Effect, State, Nothing>(
     initialState = State(),
-    actor = CharactersActor(),
+    actor = charactersActor,
     reducer = CharactersReducer()
 ) {
 
