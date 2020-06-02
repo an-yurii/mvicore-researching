@@ -1,5 +1,6 @@
 package com.yurii.mvicoreresearching.di.app
 
+import com.yurii.mvicoreresearching.MainActivity
 import com.yurii.mvicoreresearching.application_api.ApplicationApi
 import com.yurii.mvicoreresearching.application_api.NavigationApi
 import dagger.Component
@@ -21,5 +22,7 @@ abstract class AppComponent : ApplicationApi, NavigationApi {
 
         fun get(): AppComponent = component ?: throw IllegalStateException("AppComponent doesn't initialized")
     }
+
+    abstract fun inject(activity: MainActivity)
 
 }

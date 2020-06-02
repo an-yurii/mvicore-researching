@@ -16,6 +16,7 @@ import io.reactivex.Observer
 import io.reactivex.functions.Consumer
 import io.reactivex.subjects.PublishSubject
 import kotlinx.android.synthetic.main.fragment_start.*
+import ru.terrakok.cicerone.Navigator
 import ru.terrakok.cicerone.android.support.SupportAppNavigator
 import javax.inject.Inject
 
@@ -27,7 +28,7 @@ class StartFragment : Fragment(), Consumer<ViewModel>, ObservableSource<UiEvent>
     lateinit var bindings: StartFragmentBindings
     @Inject
     lateinit var navigationApi: NavigationApi
-    private val navigator = SupportAppNavigator(requireActivity(), R.id.fragmentContainer)
+    lateinit var navigator: Navigator
 
     override fun onCreate(savedInstanceState: Bundle?) {
         StartScreenFeatureComponent.Initializer.get().inject(this)
@@ -37,6 +38,7 @@ class StartFragment : Fragment(), Consumer<ViewModel>, ObservableSource<UiEvent>
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        navigator = SupportAppNavigator(requireActivity(), R.id.fragmentContainer)
         bindings.setup(this, this)
     }
 
