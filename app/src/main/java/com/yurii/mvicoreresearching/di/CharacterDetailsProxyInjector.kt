@@ -9,6 +9,7 @@ object CharacterDetailsProxyInjector {
     fun getFeature(): CharacterDetailsFeatureApi {
         return CharacterDetailsFeatureComponent.Initializer.initAndGet(
             DaggerCharacterDetailsFeatureDependenciesComponent.builder()
+                .coreNetworkApi(CoreNetworkProxyInjector.networkApi())
                 .build()
         )
     }
