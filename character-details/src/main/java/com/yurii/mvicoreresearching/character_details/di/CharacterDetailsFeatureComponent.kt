@@ -26,5 +26,5 @@ abstract class CharacterDetailsFeatureComponent : CharacterDetailsFeatureApi {
 
 }
 
-@Component(dependencies = [CoreNetworkApi::class])
+@Component(dependencies = [CoreNetworkApi::class, PayloadApi::class])
 interface CharacterDetailsFeatureDependenciesComponent : CharacterDetailsFeatureDependencies

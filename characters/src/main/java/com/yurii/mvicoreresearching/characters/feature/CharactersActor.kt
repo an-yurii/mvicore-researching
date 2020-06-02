@@ -23,7 +23,7 @@ class CharactersActor @Inject constructor(
                 .observeOn(AndroidSchedulers.mainThread())
             is Wish.ShowDetailScreen -> Observable.empty<Effect>()
                 .doOnComplete {
-                    val screen = navigationApi.screenProvider().get(ScreenKey.CharacterInfo(action.characterUrl))
+                    val screen = navigationApi.screenProvider().get(ScreenKey.CharacterInfo(action.characterId))
                     navigationApi.router().navigateTo(screen)
                 }
 

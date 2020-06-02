@@ -19,7 +19,7 @@ class CharactersFeature @Inject constructor(
 
     sealed class Wish {
         object LoadNewData : Wish()
-        data class ShowDetailScreen(val characterUrl: String) : Wish()
+        data class ShowDetailScreen(val characterId: Int) : Wish()
     }
 
     sealed class Effect {

@@ -4,5 +4,5 @@ sealed class ScreenKey {
     object Characters : ScreenKey()
     object Episodes : ScreenKey()
     object Locations : ScreenKey()
-    data class CharacterInfo(val url: String) : ScreenKey()
+    data class CharacterInfo(val id: Int) : ScreenKey()
 }
