@@ -54,4 +54,7 @@ class MainActivity : AppCompatActivity() {
         super.onPause()
     }
 
+    override fun onBackPressed() {
+        router.exit()
+    }
 }

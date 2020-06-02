@@ -13,11 +13,18 @@ class CharactersFragmentBindings @Inject constructor(
     private val charactersFeature: CharactersFeature,
     private val viewModelConnector: Connector<CharactersFeature.State, ViewModel>
 ) {
+    private var binder: Binder? = null
 
     fun setup(lifecycleOwner: LifecycleOwner, view: CharactersFragment) {
-        val binder = Binder(lifecycle = CreateDestroyBinderLifecycle(lifecycleOwner.lifecycle))
+        binder?.dispose()
+        binder = Binder(lifecycle = CreateDestroyBinderLifecycle(lifecycleOwner.lifecycle))
 
-        binder.bind(view to charactersFeature using UiEventTransformer())
-        binder.bind(charactersFeature to view using viewModelConnector)
+        binder?.bind(view to charactersFeature using UiEventTransformer())
+        binder?.bind(charactersFeature to view using viewModelConnector)
+    }
+
+    fun dispose() {
+        binder?.dispose()
+        binder = null
     }
 }

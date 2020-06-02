@@ -93,6 +93,7 @@ class CharactersFragment : Fragment(), Consumer<ViewModel>, ObservableSource<UiE
             CharactersFeatureComponent.Initializer.reset()
             feature.dispose()
         }
+        bindings.dispose()
     }
 
     override fun accept(viewModel: ViewModel?) {
