@@ -91,7 +91,6 @@ class CharactersFragment : Fragment(), Consumer<ViewModel>, ObservableSource<UiE
     private fun resetComponent() {
         if (!requireActivity().isChangingConfigurations) {
             CharactersFeatureComponent.Initializer.reset()
-            //TODO не самое лучшее место для освобождения фичи
             feature.dispose()
         }
     }

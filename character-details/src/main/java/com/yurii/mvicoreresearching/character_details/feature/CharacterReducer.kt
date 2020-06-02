@@ -7,7 +7,11 @@ import com.yurii.mvicoreresearching.character_details.feature.CharacterFeature.S
 class CharacterReducer : Reducer<State, Effect> {
 
     override fun invoke(state: State, effect: Effect): State {
-        TODO("Not yet implemented")
+        return when (effect) {
+            Effect.LoadingIsStarted -> state.copy(isLoading = true)
+            is Effect.DataIsLoaded -> state.copy(isLoading = false, data = effect.data)
+            is Effect.LoadingError -> state.copy(isLoading = false, data = null, throwable = effect.throwable)
+        }
     }
 
 }

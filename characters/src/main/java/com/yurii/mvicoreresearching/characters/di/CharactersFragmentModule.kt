@@ -23,12 +23,8 @@ class CharactersFragmentModule {
 
     @PerFeature
     @Provides
-    fun provideFragmentBindings(
-        charactersFeature: CharactersFeature
-    ): CharactersFragmentBindings {
-        return CharactersFragmentBindings(
-            charactersFeature,
-            ViewModelConnector()
+    fun provideFragmentBindings(charactersFeature: CharactersFeature): CharactersFragmentBindings {
+        return CharactersFragmentBindings(charactersFeature, ViewModelConnector()
         )
     }
 
