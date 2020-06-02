@@ -11,6 +11,4 @@ include ':app',
         ':episodes',
         ':locations-api',
         ':locations',
-        ':startscreen-api',
-        ':startscreen'
 rootProject.name='MVICore researching'
