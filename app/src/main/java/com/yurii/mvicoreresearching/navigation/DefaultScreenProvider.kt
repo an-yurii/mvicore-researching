@@ -11,7 +11,7 @@ class DefaultScreenProvider @Inject constructor() : ScreenProvider {
             is ScreenKey.Characters -> CharactersScreen
             is ScreenKey.Episodes -> EpisodesScreen
             is ScreenKey.Locations -> LocationsScreen
-            is ScreenKey.CharacterInfo -> CharacterInfoScreen
+            is ScreenKey.CharacterInfo -> CharacterDetailsScreen
         }
     }
 }

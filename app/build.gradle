@@ -41,6 +41,8 @@ dependencies {
     implementation project(':startscreen')
     implementation project(':characters-api')
     implementation project(':characters')
+    implementation project(':character-details-api')
+    implementation project(':character-details')
     implementation project(':locations-api')
     implementation project(':locations')
     implementation project(':episodes-api')

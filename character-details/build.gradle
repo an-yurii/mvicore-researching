@@ -40,6 +40,7 @@ dependencies {
     implementation project(':application-api')
     implementation project(':core-utils')
     implementation project(':core-network-api')
+    implementation project(':character-details-api')
 
     implementation deps("org.jetbrains.kotlin:kotlin-stdlib-jdk7")
     implementation deps('androidx.appcompat:appcompat')
